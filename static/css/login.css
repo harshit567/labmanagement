@@ -1,0 +1,29 @@
+body{
+	font-family:'Quicksand',sans-serif;
+}
+
+.login_text{
+font-size:1.9em;
+margin-left:37%;
+margin-top:50px;
+}
+
+.create_acc_text{
+	margin-left:38.5%;
+	margin-top:20px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.tab_btns{
+	margin-left:37%;
+	margin-top:40px;
+}
+
+.tab_btns button{
+	width:150px;
+	height:40px;
+	font-size:1em;
+}
