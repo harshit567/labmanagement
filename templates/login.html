@@ -2,34 +2,57 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
    <link href="https://fonts.googleapis.com/css?family=Rajdhani:300|Quicksand" rel="stylesheet">
     <title>login</title>
 </head>
 
 <body>
 
+<div class="wrap">
 <div class="login_text">Login to your Account</div>
-<div class="create_acc_text">Don't have an Account? <a href="#">Create Now</div>
+<div class="create_acc_text">Don't have an Account? <a href="#">Create Now</a></div>
 
   <div class="tab_btns">
-    <button class="student_tab_btn">Student</button>
+    <button class="student_tab_btn">Student</button> &nbsp; &nbsp; 
     <button clas="teacher_tab_btn">Teacher</button>
   </div>
-    <form action="">
 
+    <form class="login_student" action="/login/Student">
+       
+       <div class="student_inputs">
+        <input type="text" placeholder="Enter Your Email Id" name="username"><br>
+        <input type="password" placeholder="Enter Your Password" id="pass_input" name="passwd" style="margin-top:8px;"><br>
+
+        <img src="{{url_for('static',filename="images/eyec.png")}}" onclick="showPass()"  onclick="changeImg()" class="eye_icon " id="eyec">
+         <img src="{{url_for('static',filename="images/eye.png")}}" onclick="showPass()"  onclick="changeImg()" class="eye_icon hide" id="eye">
+        <button class="login_student_btn">Login</button>
+       </div>
+   </form>
+
+
+   <form class="login_teacher hide" action="/login/Teacher">
+       
+       <div class="teacher_inputs">
+        <input type="text" placeholder="Enter Your TEmail Id" name="username"><br>
+        <input type="password" placeholder="Enter Your Password" id="pass_input" name="passwd" style="margin-top:8px;"><br>
+
+        <img src="{{url_for('static',filename="images/eyec.png")}}" onclick="showPass()"  class="eye_icon " id="eyec">
+         <img src="{{url_for('static',filename="images/eye.png")}}" onclick="showPass()"  class="eye_icon hide" id="eye">
+        <button class="login_teacher_btn">Login</button>
+       </div>
+   </form>
            <!--  <button type="button">LOGIN</button>
             <button type="button">SIGNUP</button>
-
+            
             <input type="text" placeholder="College name" size="35" id="" required>
             <br>
-
+            
             <input type="text" placeholder="enter your name" size="35" id="" required>
-
+          
             <br>
             <select id="" required>
                 <option value="">B-Tech</option>
-                <option value="">B-farm</option>
                 <option value="">BSC</option>
                 <option value="">other</option>
             </select>
@@ -56,7 +79,52 @@
             <br>
             <br>
             <button type="submit">SUBMIT</button> -->
-    </form>
+  
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function showPass(){
+        var pass=document.getElementById("pass_input");
+      
+        if(pass.type==='password'){
+            pass.type='text';
+        }else{
+            pass.type='password';
+        }
+        
+    }
+</script>
+
+<script>
+$("#eyec").click(function(){
+    $("#eye").removeClass("hide");
+    $("#eyec").addClass("hide"); 
+});
+
+$("#eye").click(function(){
+    $("#eye").addClass("hide");
+    $("#eyec").removeClass("hide"); 
+});
+
+
+</script>
+
+<script >
+    $(".student_tab_btn").click(function(){
+        $(".login_teacher").addClass("hide");
+        $(".login_student").removeClass("hide");
+    });
+
+    $(".teacher_tab_btn").click(function(){
+        $(".login_teacher").removeClass("hide");
+        $(".login_student").addClass("hide");
+    });
+
+
+</script>
+
 </body>
 
 </html>

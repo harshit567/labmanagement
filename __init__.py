@@ -2,7 +2,8 @@ from flask import Flask,render_template,request,redirect,url_for
 import runp
 from passlib.hash import sha256_crypt
 from flask_mail import Mail,Message
-
+import random
+import string
 
 app=Flask(__name__)
 
@@ -16,11 +17,23 @@ mail=Mail(app)
 
 '''
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:mom0511@localhost/groot"
+app.config["SQLALCHEMY_BINDS"]={
+									"students":"mysql+pymysql://root:mom0511@localhost/students",
+									"teachers":"mysql+pymysql://root:mom0511@localhost/teachers"
+								}
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 db.app=app
 db.create_all()
+db1.init_app(app)
+db1.app=app
 '''
+
+
+def pass_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -56,27 +69,71 @@ def run():
 def login_sign_page():
     return render_template("login.html")
 
-@app.route("/login",methods=["GET","POST"])
-def login():
+@app.route("/login/<string:type>",methods=["GET","POST"])
+def login(type):
     try:
         if request.method=="POST":
-            type=request.form["logintype"]
             uname=request.form["username"]
             passwd=request.form["passwd"]
             if type=="Teacher":
-                user=Teachers.query.filter_by(username=uname).first()
-                if user.username=="null":
+                user=Teachers.query.filter_by(username=uname).all()
+                if len(user)==0:
                     flash("No such Teacher Present!!!")
                     return redirect(url_for("home"))
+                if sha256_crypt.verify(passwd,str(user[0].passwd)):
+                    return render_template("teachers.html")
             else:
-                user=Student.query.filter_by(username=uname).first()
-            if sha256_crypt.verify(passwd,user.passwd):
-                return render_template("student.html")
-            else:
-                flash("Wrong Credentials")
-                return redirect(url_for("login_sign_page"))
+                user=Student.query.filter_by(username=uname).all()
+                if len(user)==0:
+                    flash("No such Teacher Present!!!")
+                    return redirect(url_for("home"))
+                if sha256_crypt.verify(passwd,str(user[0].passwd)):
+                    return render_template("student.html")
+        else:
+            flash("Wrong Credentials")
+            return redirect(url_for("login_sign_page"))
     except Exception as e:
         raise e
+
+@app.route("/signup/<string:type>",methods=["GET","POST"])
+def signup(type):
+    try:
+        if request.method=="POST":
+            if type=="Teacher":
+                clgname=request.form["clgname"]
+                tecname=request.form["tecname"]
+                uname=request.form["username"]
+                passwd=pass_generator
+                msg=Message('FROM Onlinelabs',sender='in.hodophile@gmail.com',recipients=[uname])
+                msg.body="your password for first login is "+passwd
+                mail.send(msg)
+                passwd=sha256_crypt.encrypt(passwd)
+                insert_techer_cred=TeachersCredentials(username=uname,password=passwd)
+                db.session.add(insert_techer_cred)
+                db.session.commit()
+                user=Teachers.query.filter_by(username=uname).all()[0]
+                insert_techer_detail=TeacherDetails(teacher_id=user.teacher_id,username=user.username,college_id=clgname.split("-")[-1])
+                db1.session.add(insert_techer_detail)
+                db1.session.commit()
+                flash("Password for first login sent to your mail!!!")
+                return redirect(url_for("login"))
+            if type=="Student":
+                clgname=request.form["clgname"]
+                stuname=request.form["stuname"]
+                uname=request.form["username"]
+                passwd=pass_generator
+                msg=Message('FROM Onlinelabs',sender='in.hodophile@gmail.com',recipients=[uname])
+                msg.body="your password for first login is "+passwd
+                mail.send(msg)
+                passwd=sha256_crypt.encrypt(passwd)
+                insert_stu_cred=StudentsCredentials(username=uname,password=passwd)
+                db.session.add(insert_stu_cred)
+                db.session.commit()
+                flash("Password for first login sent to your mail!!!")
+                return redirect(url_for("login"))
+    except Exception as e:
+        raise e
+
 
 if __name__ == '__main__':
     app.run(debug="true",port=8000 )
