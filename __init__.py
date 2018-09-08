@@ -76,6 +76,15 @@ def login_sign_page():
 def signup_page():
     return render_template("select.html")
 
+@app.route("/signup-page/Teacher")
+def signupTeacher():
+    return render_template("sign.html")
+
+@app.route("/signup-page/Student")
+def signupStudent():
+    return render_template("signstu.html")
+
+
 
 @app.route("/login/<string:type>",methods=["GET","POST"])
 def login(type):
@@ -101,55 +110,53 @@ def login(type):
             flash("Wrong Credentials")
             return redirect(url_for("login_sign_page"))
     except Exception as e:
-        raise e
+        return "Some Error Occured"
 
 @app.route("/signup/<string:type>",methods=["GET","POST"])
 def signup(type):
-    try:
-        if request.method=="POST":
-            if type=="Teacher":
-                clgname=request.form["clgname"]
-                tecname=request.form["tecname"]
-                uname=request.form["username"]
-                passwd=pass_generator
-                msg=Message('FROM Onlinelabs',sender='in.hodophile@gmail.com',recipients=[uname])
-                msg.body="your password for first login is "+passwd
-                mail.send(msg)
-                passwd=sha256_crypt.encrypt(passwd)
-                insert_techer_cred=TeachersCredentials(username=uname,password=passwd)
-                db.session.add(insert_techer_cred)
-                db.session.commit()
-                user=Teachers.query.filter_by(username=uname).all()[0]
-                insert_techer_detail=TeacherDetails(teacher_id=user.teacher_id,username=user.username,college_id=clgname.split("-")[-1])
-                db1.session.add(insert_techer_detail)
-                db1.session.commit()
-                flash("Password for first login sent to your mail!!!")
-                return redirect(url_for("login"))
-            if type=="Student":
-				clgname=request.form["clgname"]
-				stuname=request.form["stuname"]
-				uname=request.form["username"]
-				course=request.form["course"]
-				sem=request.form["sem"]
-				section=request.form["sec"]
-				rollno=request.form["roll"]
-				branch=request.form["branch"]
-				passwd=pass_generator
-				msg=Message('FROM Onlinelabs',sender='in.hodophile@gmail.com',recipients=[uname])
-				msg.body="your password for first login is "+passwd
-				mail.send(msg)
-				passwd=sha256_crypt.encrypt(passwd)
-				insert_stu_cred=StudentsCredentials(username=uname,password=passwd)
-				db.session.add(insert_stu_cred)
-				db.session.commit()
-				user=StudentsCredentials().query.all()[0]
-				insert_stu_detail=StudentDetails(student_id=user.student_id,username=user.username,student_name=stuname,college_id=clgname.split("-")[-1],course=course,sem=sem,sec=section,rollno=rollno)
-				db2.session.add(insert_stu_detail)
-				db2.session.commit()
-				flash("Password for first login sent to your mail!!!")
-				return redirect(url_for("login"))
-    except Exception as e:
-        raise e
+    if request.method=="POST":
+        if type=="Teacher":
+            clgname=request.form["clgname"]
+            tecname=request.form["tecname"]
+            uname=request.form["username"]
+            passwd=str(pass_generator)
+            msg=Message('FROM Onlinelabs',sender='in.hodophile@gmail.com',recipients=[uname])
+            msg.body="your password for first login is "+passwd
+            mail.send(msg)
+            passwd=sha256_crypt.encrypt(passwd)
+            insert_techer_cred=TeachersCredentials(username=uname,password=passwd)
+            db.session.add(insert_techer_cred)
+            db.session.commit()
+            user=TeachersCredentials.query.filter_by(username=uname).all()[0]
+            insert_techer_detail=TeacherDetails(teacher_id=user.teacher_id,username=user.username,teacher_name=tecname,college_id=clgname.split("-")[-1])
+            db1.session.add(insert_techer_detail)
+            db1.session.commit()
+            flash("Password for first login sent to your mail!!!")
+            return redirect(url_for("login_sign_page"))
+        if type=="Student":
+			clgname=request.form["clgname"]
+			stuname=request.form["stuname"]
+			uname=request.form["username"]
+			course=request.form["course"]
+			sem=request.form["sem"]
+			section=request.form["sec"]
+			rollno=request.form["roll"]
+			branch=request.form["branch"]
+			passwd=str(pass_generator)
+			#msg=Message('FROM Onlinelabs',sender='in.hodophile@gmail.com',recipients=[uname])
+			#msg.body="your password for first login is "+passwd
+			#mail.send(msg)
+			passwd=sha256_crypt.encrypt(passwd)
+			insert_stu_cred=StudentsCredentials(username=uname,password=passwd)
+			db.session.add(insert_stu_cred)
+			db.session.commit()
+			user=StudentsCredentials().query.all()[0]
+			insert_stu_detail=StudentDetails(student_id=user.student_id,username=user.username,student_name=stuname,college_id=clgname.split("-")[-1],course=course,sem=sem,sec=section,rollno=rollno)
+			db2.session.add(insert_stu_detail)
+			db2.session.commit()
+			flash("Password for first login sent to your mail!!!")
+			return redirect(url_for("login_sign_page"))
+
 
 
 if __name__ == '__main__':

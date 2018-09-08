@@ -10,13 +10,13 @@ db2=SQLAlchemy()  #Students
 class StudentsCredentials(db.Model):
 	__tablename__="studentscredentials"
 	student_id=db.Column(db.Integer,primary_key=True)
-	username=db.Column(db.String(20),nullable=False)
+	username=db.Column(db.String(200),nullable=False)
 	password=db.Column(db.String(200),nullable=False)
 
 class TeachersCredentials(db.Model):
 	__tablename__="teacherscredentials"
 	teacher_id=db.Column(db.Integer,primary_key=True)
-	username=db.Column(db.String(20),nullable=False)
+	username=db.Column(db.String(200),nullable=False)
 	password=db.Column(db.String(200),nullable=False)
 
 class College(db.Model):
@@ -41,7 +41,7 @@ class TeacherDetails(db1.Model):
 	__bind_key__="Teachers"
 	__tablename__="teacher_details"
 	teacher_id=db1.Column(db1.Integer,primary_key=True)
-	username=db1.Column(db1.String(20),nullable=False)
+	username=db1.Column(db1.String(200),nullable=False)
 	teacher_name=db1.Column(db1.String(50),nullable=False)
 	college_id=db1.Column(db1.String(20),nullable=False)
 
@@ -58,7 +58,7 @@ class StudentDetails(db2.Model):
 	__bind_key__="Students"
 	__tablename__="student_details"
 	student_id=db2.Column(db2.Integer,primary_key=True)
-	username=db2.Column(db2.String(20),nullable=False)
+	username=db2.Column(db2.String(200),nullable=False)
 	student_name=db2.Column(db2.String(50),nullable=False)
 	college_id=db2.Column(db2.String(20),nullable=False)
 	course=db2.Column(db2.String(20),nullable=False)
