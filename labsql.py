@@ -43,11 +43,12 @@ class TeacherDetails(db1.Model):
 	teacher_id=db1.Column(db1.Integer,primary_key=True)
 	username=db1.Column(db1.String(20),nullable=False)
 	teacher_name=db1.Column(db1.String(50),nullable=False)
-	college_id=db1.Column(String(20),nullable=False)
+	college_id=db1.Column(db1.String(20),nullable=False)
 
 class TeacherId(db1.Model):
 	__bind_key__="Teachers"
 	__tablename__="teacherid"
+	id=db1.Column(db1.Integer,primary_key=True)
 	lab_id=db1.Column(db1.Integer)
 	ref_no=db1.Column(db1.String(20),nullable=False)
 
@@ -59,15 +60,16 @@ class StudentDetails(db2.Model):
 	student_id=db2.Column(db2.Integer,primary_key=True)
 	username=db2.Column(db2.String(20),nullable=False)
 	student_name=db2.Column(db2.String(50),nullable=False)
-	college_id=db2.Column(String(20),nullable=False)
-	course=db2.Column(String(20),nullable=False)
-	sem=db2.Column(String(5),nullable=False)
-	sec=db2.Column(String(5),nullable=False)
+	college_id=db2.Column(db2.String(20),nullable=False)
+	course=db2.Column(db2.String(20),nullable=False)
+	sem=db2.Column(db2.String(5),nullable=False)
+	sec=db2.Column(db2.String(5),nullable=False)
 	rollno=db2.Column(db2.String(5),nullable=False)
 
 class StudentId(db2.Model):
 	__bind_key__="Students"
 	__tablename__="studentid"
+	id=db2.Column(db2.Integer,primary_key=True)
 	lab_id=db2.Column(db2.String(20),nullable=False)
 	expno=db2.Column(db2.String(20))
 	problem=db2.Column(db2.String(500))
@@ -78,5 +80,6 @@ class StudentId(db2.Model):
 class StudentReg(db2.Model):
 	__bind_key__="Students"
 	__tablename__="studentreg"
+	id=db2.Column(db2.Integer,primary_key=True)
 	student_id=db2.Column(db2.String(20))
 	lab_id=db2.Column(db2.String(20))

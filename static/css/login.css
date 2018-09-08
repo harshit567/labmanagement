@@ -17,6 +17,8 @@ a{
 	text-decoration: none;
 }
 
+
+
 .tab_btns{
 	margin-left:37%;
 	margin-top:50px;
@@ -47,8 +49,8 @@ button{
 	transition:0.2s;
 }
 
-.active{
-  	background:rgba(19, 51, 76,1);
+.active_tab{
+  	background:rgb(19, 51, 76) !important;
  	color:#fff;
 }
 
@@ -114,7 +116,7 @@ input:focus{
 	width:25px;
 	position:absolute;
 	left:62%;
-	top:53%;
+	top:54.5%;
 }
 
 .eye_icon{
@@ -123,4 +125,11 @@ input:focus{
 
 .hide{
 	display:none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active{
+	transition:background-color 500s;
 }
