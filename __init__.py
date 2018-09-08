@@ -84,7 +84,9 @@ def signupTeacher():
 @app.route("/signup-page/Student")
 def signupStudent():
     return render_template("signStu.html")
-
+@app.route("/run-now")
+def run_now():
+	return render_template("editor.html")
 @app.route("/user/<string:type>/<string:path>")
 def user_log(type,path):
 	if session['username']!=None:
