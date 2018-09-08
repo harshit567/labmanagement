@@ -17,8 +17,6 @@ a{
 	text-decoration: none;
 }
 
-
-
 .tab_btns{
 	margin-left:37%;
 	margin-top:50px;
@@ -115,8 +113,8 @@ input:focus{
 .eye_icon{
 	width:25px;
 	position:absolute;
-	left:62%;
-	top:54.5%;
+	left:60%;
+	top:45.5%;
 }
 
 .eye_icon{

@@ -64,7 +64,7 @@ class StudentDetails(db2.Model):
 	course=db2.Column(db2.String(20),nullable=False)
 	sem=db2.Column(db2.String(5),nullable=False)
 	sec=db2.Column(db2.String(5),nullable=False)
-	rollno=db2.Column(db2.String(5),nullable=False)
+	rollno=db2.Column(db2.String(20),nullable=False)
 
 class StudentId(db2.Model):
 	__bind_key__="Students"

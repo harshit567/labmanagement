@@ -15,24 +15,6 @@ nav{
 
 }*/
 
-
-input,select{
-	font-size:1.1em;
-    width:180px;
-	height:40px;
-	border-bottom:1px solid  #A9A9A9;
-    border-left:0px solid #A9A9A9;
-    border-right: 0px solid #A9A9A9;
-    border-top:0px solid  #A9A9A9;
- /*   box-shadow:0   10px 7px -10px rgba(0,0,0,0.5);
-    border-radius:3px;*/
-    font-family:'Quicksand',sans-serif;
-}
-
-input:focus{
-	outline: none;
-}
-
 ul {
 	background-color:rgba(19,51,76,1);
 	position:fixed;
@@ -40,9 +22,9 @@ ul {
 	top:30px;
 	width:190px;
 	height:93%;
-	
+
 }
-ul li{	
+ul li{
 	list-style-type: none;
 	font-size:1.4em;
 	padding-top: 0px;
@@ -136,8 +118,6 @@ body{
 }
 
 
-
-
 .exp_box{
 	width:69.6%;
 	height:120px;
@@ -152,14 +132,15 @@ body{
 
 }
 
+
 button{
 	font-family: 'Quicksand',sans-serif;
 }
-.add_btn{
+.solve_btn{
 	width:70px;
-	margin-top:50px;
+	margin-top:0px;
 	float:right;
-	margin-right:10.4%;
+	margin-right:11%;
 	height:35px;
 	font-size:1em;
 	background:rgb(19, 51, 76);
@@ -221,25 +202,4 @@ button{
 
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-.create_lab_box{
-	border:1px solid #000;
-	width:400px;
-	height:250px;
-	margin-left:33%;
-	margin-top:170px;
-	background:#fff;
-	opacity:1;
-}
-
-.lab_submit_btn{
-	margin-top:20px;
-	margin-left:0px;
-	width:180px;
-	height:30px;
-	font-size:1em;
-	background:rgba(19,51,76,1);
-	border:1px solid rgba(19,51,76,1);
-	color:#fff;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="{{url_for('static',filename='css/teacherdash.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/studentdash.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:300|Quicksand" rel="stylesheet">
     <title></title>
 </head>
@@ -13,36 +13,34 @@
   <button class="profile">Profile</button>
   <div class="dropdown-content">
     <a href="#">1602910120</a>
-    <a href="#">Wallet  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &#8377; &nbsp;0</a>
-    <a href="#">Pending</a>
+    <a href="#">KIET</a>
+    <a href="#">CSE</a>
     <a href="#">Settings</a>
-    <a href="#">Log Out</a>
+
   </div>
 </div>
-        <div class="logout_btn">Log Out</div>
+        <a href="/logout"><div class="logout_btn">Log Out</div></a>
     </nav>
 
 <div class="side_menu">
 	<ul>
-		<li><div>Lab 1</div></li>
-		<li><div>Lab 2</div></li>
-		<li><div>Lab 3</div></li>
+		<li><div>Python</div></li>
+		<li><div>C</div></li>
+		<li><div>Java</div></li>
 	</ul>
 </div>
 
-<div class="btns">
+<!-- <div class="btns">
 <button class="invite_btn">Invite</button>
-<a href="/user/Teacher/createlab"><button class="create_lab_btn">Create New Lab</button></a>
-</div>
-
+<button class="create_lab_btn">Create New Lab</button>
+</div> -->
+<br/><br/><br/>
 <div class="boxes">
 	<div class="exp_box">
-		<div class="exp_head"> &nbsp; Exp 1:</div>
+		<div class="exp_head"> &nbsp; Exp 1: &nbsp; Create a program to print hello world!!!</div>
 	</div>
-
+		<a href="/user/Student/run-page " class="solve_btn" style="z-index:100000000;margin-top:40px">Solve</a>
 </div>
-		<button class="add_btn">Add</button>
-
 
 
 </body>

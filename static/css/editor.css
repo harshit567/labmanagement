@@ -68,11 +68,11 @@ select:focus{
 
 textarea{
 	background:rgba(0,0,0,0.9);
-	color:#fff;
+	color:#2bde4a;
 	position:fixed;
 	top:40px;
-	left:251px;
-	width:667px;
+	left:281px;
+	width:806px;
 	/*max-width:720px;*/
 	height:93%;
 	resize:none/*horizontal*/;
@@ -107,7 +107,7 @@ textarea:focus{
 
 iframe{
 	position: fixed;
-	left:930px;
+	left:1100px;
 	top:41px;
 	width:437px;
 	height:94%;
