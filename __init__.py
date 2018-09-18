@@ -26,7 +26,6 @@ app.config["SQLALCHEMY_BINDS"]={
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 db.app=app
-#db.create_all()
 db1.init_app(app)
 db1.app=app
 db2.init_app(app)
