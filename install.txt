@@ -1,0 +1,19 @@
+For windows:
+install python from https://www.python.org/downloads/
+TO UPGRADE PIP TO LATEST: python -m pip install --upgrade pip
+pip install flask
+pip install flask-mail
+pip install passlib
+FOR MYSQL: First Get "Microsoft Visual C++ Build Tools" latest version from http://landinghub.visualstudio.com/visual-cpp-build-tools
+pip install mysql-python
+
+
+For ubuntu:
+sudo apt-get install python
+sudo apt-get install python-pip
+sudo apt-get install apache2 mysql-server mysql-client
+sudo apt-get install python-dev libmysqlclient-dev
+pip install MySQL-python
+pip install flask
+pip install flask-mail
+pip install passlib
